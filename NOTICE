@@ -1,0 +1,18 @@
+DFlash Coach v1.0.0
+
+The orchestration, training utilities and capture tools in this package are
+provided under Apache License 2.0. No target weights or draft weights are included.
+
+source/zmodel.py derives from the DFlash implementation by Z Lab and remains
+subject to the MIT license in licenses/DFlash-MIT.txt.
+Upstream: https://github.com/z-lab/dflash
+
+The capture tools use APIs from the compatible llama.cpp fork. That runtime is
+not bundled. Its source and license must be obtained separately.
+Runtime source: https://github.com/mistrjirka/llama.cpp
+
+Public dataset references are examples authorized for inclusion. Dataset files
+are not bundled. Follow the source notices and terms of each downloaded dataset.
+
+No private training records, checkpoints, prompts, server configuration,
+credentials or measured results are distributed with this package.

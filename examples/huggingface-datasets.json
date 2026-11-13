@@ -1,0 +1,28 @@
+{
+  "deepseek": {
+    "repository": "biscet/DFlash-DeepSeek-TraceMix",
+    "revision": "147260ed6957a2ba20c4703c48e8fa195f256823",
+    "files": {
+      "train": "data/train.jsonl",
+      "validation": "data/validation.jsonl",
+      "test": "data/test.jsonl"
+    }
+  },
+  "stage2": {
+    "repository": "biscet/DFlash-DeepSeek-TraceMix",
+    "revision": "147260ed6957a2ba20c4703c48e8fa195f256823",
+    "files": {
+      "train": "stage2/added_2026-11-13.jsonl",
+      "validation": "data/validation.jsonl",
+      "test": "data/test.jsonl"
+    }
+  },
+  "lite": {
+    "repository": "biscet/DFlash-TraceMix-Lite",
+    "revision": "a310d187a11865861017c773f7609dbef64d0fee",
+    "files": {
+      "train": "data/openmix/train.jsonl",
+      "validation": "data/openmix/validation.jsonl"
+    }
+  }
+}

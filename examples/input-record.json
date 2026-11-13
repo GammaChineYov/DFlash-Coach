@@ -1,0 +1,11 @@
+{
+  "id": "synthetic_0001",
+  "project": "example_project",
+  "source_path": "example.txt",
+  "source_sha256": "50f9eb727ca0679b8300032e60bacd3b295f50c386a845f83ec620ac7d5d747d",
+  "sampling_group": "example/en",
+  "language": "en",
+  "split": "train",
+  "prompt": "Synthetic example only. Render a real prompt with your target chat template before training.",
+  "prompt_tokens": 0
+}

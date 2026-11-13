@@ -1,0 +1,5 @@
+# Training dependencies. The offline demo and most tests use only Python itself.
+torch==2.8.0
+numpy==2.5.2
+transformers==5.8.0
+# Install gguf from the compatible runtime checkout, as described in the guide.

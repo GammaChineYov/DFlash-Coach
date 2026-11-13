@@ -1,0 +1,18 @@
+--- a/src/models/qwen4exp.cpp
++++ b/src/models/qwen4exp.cpp
+@@ -378,6 +378,15 @@
+ 
+     for (int il = 0; il < n_layer; ++il) {
+         res->t_layer_inp[il] = res_hc;
++        if (params.cparams.embeddings_layer_inp[il]) {
++            auto * mean = ggml_view_2d(ctx0, res_hc, n_embd, n_tokens, res_hc->nb[2], 0);
++            for (int64_t stream = 1; stream < hc; ++stream) {
++                auto * part = ggml_view_2d(ctx0, res_hc, n_embd, n_tokens, res_hc->nb[2], stream * res_hc->nb[1]);
++                mean = ggml_add(ctx0, mean, part);
++            }
++            res->t_layer_inp[il] = ggml_scale(ctx0, mean, 1.0f / float(hc));
++            ggml_build_forward_expand(gf, res->t_layer_inp[il]);
++        }
+ 
+         if (hparams.is_ple(il)) {
+             res_hc = build_ple(inp->get_recr(), ple_emb, res_hc, il);
