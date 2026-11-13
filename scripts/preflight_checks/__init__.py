@@ -1,0 +1,1 @@
+"""DFlash Coach preflight checks."""

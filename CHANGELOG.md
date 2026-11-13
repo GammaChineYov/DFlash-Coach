@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+- Grouped CLI commands and application code by domain around the coach.py entry point.
+- Split preparation, preflight, mentor reviews, training and benchmark into focused stages.
+- Separated native capture orchestration, feature extraction and metadata I/O.
+
+- Separated portable configuration, storage, planning, metrics and mentor evidence.
+- Split training sample loading, objective computation, model I/O and weight snapshots.
+- Extracted DFlash layers and sampling while preserving model state keys and entry points.
+- Centralized recipe constants and unified Python/C++ formatting.
+- Included nested Python modules in frozen plans.
+
 ## 1.0.0
 
 - Added a portable configuration for capture, training and comparison.

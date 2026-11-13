@@ -1,6 +1,6 @@
 # DFlash Coach
 
-Version 1.0.0. [Русская инструкция](README.ru.md).
+Version 1.0.0. [Russian instructions](README.ru.md).
 
 DFlash Coach captures features from a GGUF target model, fine-tunes a DFlash2
 draft and compares the result with its parent. DeepSeek Flash reviews validation
@@ -75,9 +75,12 @@ response quality. The candidate is not installed into an inference service.
 
 ## Versions and licenses
 
+The architecture is documented in the
+[Russian architecture guide](docs/architecture.ru.md).
+
 `main` holds current development. `v1.0.0` is the saved first-release branch.
-An annotated `v1.0.0` tag points to the same commit. Later versions get their own
-saved branches and tags. See [release steps](docs/releases.md).
+Release snapshots use branches without tags. Later versions get their own saved
+branches. See [release steps](docs/releases.md).
 
 Original utilities use Apache-2.0. The upstream DFlash model implementation uses
 MIT. See [NOTICE](NOTICE), [LICENSE](LICENSE) and [DFlash MIT](licenses/DFlash-MIT.txt).

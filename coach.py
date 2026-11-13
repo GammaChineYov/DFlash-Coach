@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""Portable entry point; demo/status/tests require only the standard library."""
+"""Run the selected DFlash Coach command without importing the ML backend eagerly."""
+
 import argparse
-from pathlib import Path
-import runpy
+import importlib
 import sys
 
-COMMANDS={'launch':'launch','demo':'demo','prepare':'prepare','verify-tokens':'verify_tokens','preflight':'preflight',
-          'download-example':'download_dataset','tokenize-inputs':'tokenize_inputs','run':'run','benchmark':'benchmark','status':'status','privacy-check':'privacy_check'}
+from scripts.coach_core.constants.commands import COMMANDS
 
 
 def main():
-    parser=argparse.ArgumentParser(description='DFlash Coach: draft fine-tuning orchestration')
-    parser.add_argument('command',choices=COMMANDS)
-    args,remaining=parser.parse_known_args()
-    scripts=Path(__file__).resolve().parent/'scripts'
-    sys.path.insert(0,str(scripts));sys.argv=[str(scripts/(COMMANDS[args.command]+'.py')),*remaining]
-    runpy.run_path(sys.argv[0],run_name='__main__')
+    parser = argparse.ArgumentParser(
+        description="DFlash Coach: draft fine-tuning orchestration",
+    )
+    parser.add_argument("command", choices=COMMANDS)
+    args, remaining = parser.parse_known_args()
+
+    module_name = "scripts.commands." + COMMANDS[args.command]
+    command = importlib.import_module(module_name)
+    sys.argv = [f"{sys.argv[0]} {args.command}", *remaining]
+    command.main()
 
 
-if __name__=='__main__':main()
+if __name__ == "__main__":
+    main()
