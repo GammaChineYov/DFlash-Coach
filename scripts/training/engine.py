@@ -19,13 +19,14 @@ def create_optimizer(model, learning_rate):
             fc.append(param)
         else:
             body.append(param)
-    optimizer = torch.optim.AdamW(
+    # 单卡 21.4 GB 放不下 f32 参数 + AdamW 两套状态 + 词表两表；Adafactor 因子化状态小一个量级
+    from transformers.optimization import Adafactor
+    optimizer = Adafactor(
         [
             {"params": body, "lr": learning_rate, "base_lr": learning_rate},
             {"params": fc, "lr": learning_rate * 3, "base_lr": learning_rate * 3},
         ],
-        weight_decay=0.01,
-        foreach=True,
+        scale_parameter=False, relative_step=False, warmup_init=False, weight_decay=0.01,
     )
     return optimizer
 

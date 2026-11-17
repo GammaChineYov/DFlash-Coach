@@ -60,7 +60,8 @@ class ShardObjective:
 
     def compute(self, batch, anchors, width):
         prepared = self.prepare_batch(batch, anchors, width)
-        with torch.autocast("cuda", dtype=torch.float16):
+        # f16 autocast 在真实特征尺度下会溢出成 NaN，改 bf16
+        with torch.autocast("cuda", dtype=torch.bfloat16):
             hidden = self.model(
                 position_ids=prepared.positions,
                 attention_mask=prepared.attention,

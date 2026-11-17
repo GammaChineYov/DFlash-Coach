@@ -45,7 +45,8 @@ class PlanningTests(unittest.TestCase):
 
     def test_shards_respect_memory_bound(self):
         rows = [self.row(str(i)) for i in range(9)]
-        per_row = 421 * 32768
+        from scripts.coach_core.constants.recipe import FEATURE_BYTES_PER_TOKEN
+        per_row = 421 * FEATURE_BYTES_PER_TOKEN  # 跟随配方宽度（本机 5x5120）
         shards = list(shard_rows(rows, 99, per_row * 2, 320))
         self.assertEqual([len(x) for x in shards], [2, 2, 2, 2, 1])
         self.assertEqual([x["id"] for s in shards for x in s], [r["id"] for r in rows])
